@@ -1,10 +1,10 @@
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 
-import { useLoginMutation } from '../features/tasksApi'
+import { useLoginMutation } from '../../features/auth/authApi'
 
-import { useAppDispatch } from '../hooks/redux'
-import { setCredentials } from '../features/authSlice'
+import { useAppDispatch } from '../../hooks/redux'
+import { setCredentials } from '../../features/auth/authSlice'
 
 export default function LoginPage() {
   const navigate = useNavigate()

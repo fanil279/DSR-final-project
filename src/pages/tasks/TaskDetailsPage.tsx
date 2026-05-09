@@ -1,5 +1,5 @@
 import { useParams } from 'react-router-dom'
-import { useGetTaskQuery } from '../features/tasksApi'
+import { useGetTaskQuery } from '../../features/tasks/tasksApi'
 
 export default function TaskDetailPage() {
   const { id } = useParams()

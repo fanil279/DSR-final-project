@@ -1,11 +1,12 @@
 import { Navigate } from 'react-router-dom'
 
-import LoginPage from '../pages/LoginPage'
-import RegisterPage from '../pages/RegisterPage'
-import TasksPage from '../pages/TasksPage'
-import TaskDetailPage from '../pages/TaskDetailsPage'
-import CreateTaskPage from '../pages/CreateTaskPage'
-import EditTaskPage from '../pages/EditTaskPage'
+import LoginPage from '../pages/auth/LoginPage'
+import RegisterPage from '../pages/auth/RegisterPage'
+import TasksPage from '../pages/tasks/TasksPage'
+import TaskDetailPage from '../pages/tasks/TaskDetailsPage'
+import CreateTaskPage from '../pages/tasks/CreateTaskPage'
+import EditTaskPage from '../pages/tasks/EditTaskPage'
+import KanbanPage from './../pages/kanban/KanbanPage'
 
 import ProtectedRoute from '../components/ProtectedRoute'
 
@@ -60,4 +61,13 @@ export const routes = [
       </ProtectedRoute>
     ),
   },
+
+  {
+    path: '/kanban',
+    element: (
+      <ProtectedRoute>
+        <KanbanPage />
+      </ProtectedRoute>
+    ),
+  }
 ]

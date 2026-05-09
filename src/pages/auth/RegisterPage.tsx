@@ -1,10 +1,10 @@
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 
-import { useRegisterMutation } from '../features/tasksApi'
+import { useRegisterMutation } from '../../features/auth/authApi'
 
-import { useAppDispatch } from '../hooks/redux'
-import { setCredentials } from '../features/authSlice'
+import { useAppDispatch } from '../../hooks/redux'
+import { setCredentials } from '../../features/auth/authSlice'
 
 export default function RegisterPage() {
   const navigate = useNavigate()

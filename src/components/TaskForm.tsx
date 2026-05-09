@@ -31,46 +31,28 @@ export default function TaskForm({
   onSubmit,
   isLoading,
 }: Props) {
-  const [title, setTitle] = useState(
-    initialValues?.title || ''
+  const [title, setTitle] = useState(initialValues?.title || '')
+  const [description, setDescription] = useState(initialValues?.description || '')
+  const [status, setStatus] = useState<TaskStatus>(initialValues?.status || 'TODO')
+  const [priority, setPriority] = useState<TaskPriority>(initialValues?.priority || 'LOW')
+
+  const [visibility, setVisibility] = useState<TaskVisibility>(
+    initialValues?.visibility || 'ONLY_ME'
   )
-
-  const [description, setDescription] = useState(
-    initialValues?.description || ''
-  )
-
-  const [status, setStatus] = useState<TaskStatus>(
-    initialValues?.status || 'TODO'
-  )
-
-  const [priority, setPriority] =
-    useState<TaskPriority>(
-      initialValues?.priority || 'LOW'
-    )
-
-  const [visibility, setVisibility] =
-    useState<TaskVisibility>(
-      initialValues?.visibility || 'ONLY_ME'
-    )
 
   const [error, setError] = useState('')
 
-  const handleSubmit = (
-    e: React.FormEvent
-  ) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-
     setError('')
 
     if (!title.trim()) {
       setError('Title is required')
-
       return
     }
 
     if (!description.trim()) {
       setError('Description is required')
-
       return
     }
 
@@ -84,101 +66,62 @@ export default function TaskForm({
   }
 
   return (
-    <form
-      onSubmit={handleSubmit}
-      className="bg-white p-6 rounded shadow"
-    >
-      <h1 className="text-3xl font-bold mb-6">
-        Task Form
-      </h1>
+    <form onSubmit={handleSubmit} className="bg-white p-6 rounded shadow space-y-4">
+
+      <h1 className="text-2xl font-bold">Task Form</h1>
 
       <input
         type="text"
         placeholder="Title"
         value={title}
-        onChange={(e) =>
-          setTitle(e.target.value)
-        }
-        className="w-full border p-3 rounded mb-4"
+        onChange={(e) => setTitle(e.target.value)}
+        className="input"
       />
 
       <textarea
         placeholder="Description"
         value={description}
-        onChange={(e) =>
-          setDescription(e.target.value)
-        }
-        className="w-full border p-3 rounded mb-4 h-40"
+        onChange={(e) => setDescription(e.target.value)}
+        className="input h-32"
       />
 
       <select
         value={status}
-        onChange={(e) =>
-          setStatus(
-            e.target.value as TaskStatus
-          )
-        }
-        className="w-full border p-3 rounded mb-4"
+        onChange={(e) => setStatus(e.target.value as TaskStatus)}
+        className="input"
       >
         <option value="TODO">TODO</option>
-
-        <option value="IN_PROGRESS">
-          IN PROGRESS
-        </option>
-
+        <option value="IN_PROGRESS">IN PROGRESS</option>
         <option value="DONE">DONE</option>
       </select>
 
       <select
         value={priority}
-        onChange={(e) =>
-          setPriority(
-            e.target.value as TaskPriority
-          )
-        }
-        className="w-full border p-3 rounded mb-4"
+        onChange={(e) => setPriority(e.target.value as TaskPriority)}
+        className="input"
       >
         <option value="LOW">LOW</option>
-
-        <option value="MEDIUM">
-          MEDIUM
-        </option>
-
+        <option value="MEDIUM">MEDIUM</option>
         <option value="HIGH">HIGH</option>
       </select>
 
       <select
         value={visibility}
-        onChange={(e) =>
-          setVisibility(
-            e.target
-              .value as TaskVisibility
-          )
-        }
-        className="w-full border p-3 rounded mb-4"
+        onChange={(e) => setVisibility(e.target.value as TaskVisibility)}
+        className="input"
       >
-        <option value="ONLY_ME">
-          ONLY ME
-        </option>
-
-        <option value="PUBLIC">
-          PUBLIC
-        </option>
+        <option value="ONLY_ME">Only me</option>
+        <option value="LIST">List</option>
+        <option value="ANYONE">Anyone</option>
       </select>
 
-      {error && (
-        <p className="text-red-500 mb-4">
-          {error}
-        </p>
-      )}
+      {error && <p className="text-red-500">{error}</p>}
 
       <button
         disabled={isLoading}
-        className="bg-black text-white px-6 py-3 rounded cursor-pointer"
+        className="bg-black text-white px-4 py-2 rounded"
       >
-        {isLoading
-          ? 'Loading...'
-          : 'Submit'}
+        {isLoading ? 'Loading...' : 'Submit'}
       </button>
     </form>
   )
