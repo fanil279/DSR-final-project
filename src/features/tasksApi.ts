@@ -99,6 +99,7 @@ export const tasksApi = createApi({
         status: TaskStatus
         priority: TaskPriority
         visibility: TaskVisibility
+        viewerUserIds: string[]
       }
     >({
       query: ({ id, ...body }) => ({

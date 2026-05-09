@@ -1,15 +1,20 @@
-import { createBrowserRouter } from 'react-router-dom'
-
-import Layout from '../components/Layout'
-import ProtectedRoute from '../components/ProtectedRoute'
+import { Navigate } from 'react-router-dom'
 
 import LoginPage from '../pages/LoginPage'
 import RegisterPage from '../pages/RegisterPage'
 import TasksPage from '../pages/TasksPage'
-import TaskDetailsPage from '../pages/TaskDetailsPage'
+import TaskDetailPage from '../pages/TaskDetailsPage'
 import CreateTaskPage from '../pages/CreateTaskPage'
+import EditTaskPage from '../pages/EditTaskPage'
 
-export const router = createBrowserRouter([
+import ProtectedRoute from '../components/ProtectedRoute'
+
+export const routes = [
+  {
+    path: '/',
+    element: <Navigate to="/tasks" />,
+  },
+
   {
     path: '/login',
     element: <LoginPage />,
@@ -21,28 +26,38 @@ export const router = createBrowserRouter([
   },
 
   {
-    path: '/',
+    path: '/tasks',
     element: (
       <ProtectedRoute>
-        <Layout />
+        <TasksPage />
       </ProtectedRoute>
     ),
-
-    children: [
-      {
-        path: '/tasks',
-        element: <TasksPage />,
-      },
-
-      {
-        path: '/tasks/create',
-        element: <CreateTaskPage />,
-      },
-
-      {
-        path: '/tasks/:id',
-        element: <TaskDetailsPage />,
-      },
-    ],
   },
-])
+
+  {
+    path: '/tasks/new',
+    element: (
+      <ProtectedRoute>
+        <CreateTaskPage />
+      </ProtectedRoute>
+    ),
+  },
+
+  {
+    path: '/tasks/:id',
+    element: (
+      <ProtectedRoute>
+        <TaskDetailPage />
+      </ProtectedRoute>
+    ),
+  },
+
+  {
+    path: '/tasks/:id/edit',
+    element: (
+      <ProtectedRoute>
+        <EditTaskPage />
+      </ProtectedRoute>
+    ),
+  },
+]

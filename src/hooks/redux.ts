@@ -1,7 +1,6 @@
 import {
   useDispatch,
-  useSelector,
-  type TypedUseSelectorHook,
+  useSelector
 } from 'react-redux'
 
 import type {
