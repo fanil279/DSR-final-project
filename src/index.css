@@ -1,0 +1,87 @@
+@import "tailwindcss";
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background: #f3f4f6;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+@layer components {
+  .page {
+    @apply min-h-screen bg-gray-100 p-6;
+  }
+
+  .container {
+    @apply max-w-6xl mx-auto;
+  }
+
+  .card {
+    @apply bg-white rounded-xl shadow-sm p-6;
+  }
+
+  .card-hover {
+    @apply transition hover:shadow-md;
+  }
+
+  .btn {
+    @apply inline-flex items-center justify-center px-4 py-2 rounded-lg font-medium transition;
+  }
+
+  .btn-primary {
+    @apply bg-black text-white hover:bg-gray-800;
+  }
+
+  .btn-danger {
+    @apply bg-red-500 text-white hover:bg-red-600;
+  }
+
+  .btn-secondary {
+    @apply bg-gray-200 text-black hover:bg-gray-300;
+  }
+
+  .btn:disabled {
+    @apply opacity-50 cursor-not-allowed;
+  }
+
+  .input {
+    @apply w-full border border-gray-300 rounded-lg px-3 py-2
+           focus:outline-none focus:ring-2 focus:ring-black focus:border-transparent;
+  }
+
+  .textarea {
+    @apply w-full border border-gray-300 rounded-lg px-3 py-2 min-h-[120px]
+           focus:outline-none focus:ring-2 focus:ring-black focus:border-transparent;
+  }
+
+  .select {
+    @apply w-full border border-gray-300 rounded-lg px-3 py-2 bg-white
+           focus:outline-none focus:ring-2 focus:ring-black;
+  }
+
+  .title {
+    @apply text-2xl font-bold text-gray-900;
+  }
+
+  .subtitle {
+    @apply text-gray-500 text-sm;
+  }
+
+  .error {
+    @apply text-red-500 text-sm mt-2;
+  }
+
+  .flex-center {
+    @apply flex items-center justify-center;
+  }
+
+  .flex-between {
+    @apply flex items-center justify-between;
+  }
+
+  .stack {
+    @apply space-y-4;
+  }
+}
